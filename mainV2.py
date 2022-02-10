@@ -51,36 +51,36 @@ while(True):
         print(plantSeed)
         print("Detected plant seed button")
         pyautogui.click(1212, 211) # CLICK PLANT ALL
-        sleep(3)
+        sleep(2)
         pyautogui.click(963, 963) # CLICK YES
-        sleep(3)
+        sleep(2)
         print("Done planting 4x4")
         print("Rebuying seeds...")
         pyautogui.click(116, 180) # CLICK HOME
-        sleep(3)
+        sleep(2)
         pyautogui.click(535, 430) # CLICK GO TO TOWN
-        sleep(3)
+        sleep(2)
         pyautogui.click(508, 318) # 
-        sleep(3)
+        sleep(2)
         rebuy = 0
-        i = 24
+        i = 32
         for plantSeeds in plantSeed:
             rebuy = rebuy + 1
         while i > rebuy:
-            pyautogui.click(340, 516) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
+            pyautogui.click(340, 413) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
             i = i - 1
             sleep(.35)
-        pyautogui.click(1478, 498) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
-        sleep(3)
+        pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+        sleep(2)
         pyautogui.click(960, 965) # CLICK OK
-        sleep(3)
+        sleep(2)
         pyautogui.click(966, 564) # CLICK GO TO FARM
         # longer sleep as 1 second would catch the screen half way swapped and mis-click then rebuy in error
-        sleep(3)
+        sleep(2)
 
     #Get updated screenshot as searching for plantSeed may have taken a bit of time
     screenshot = wincap.get_screenshot()
-    harvest = carrotReady.find(screenshot, 0.91, 'points')
+    harvest = pepperReady.find(screenshot, 0.91, 'points') # [CARROT 0.91, RADISH x.xx]
     if (harvest.any()):
         print("harvastable found, harvesting!")
         print(harvest)
@@ -88,44 +88,44 @@ while(True):
         sleep(3.3)
         print("Done harvesting 4x4, replanting...")
         pyautogui.click(1216, 209)# CLICK PLANT ALL
-        sleep(3)
+        sleep(2)
         pyautogui.click(963, 963) # CLICK YES
         sleep(3.3)
         print("Done replanting 4x4")
         #sell all the crops and rebuy more
         pyautogui.click(116, 180) # CLICK HOME
-        sleep(3)
+        sleep(2)
         pyautogui.click(535, 430) # CLICK GO TO TOWN
-        sleep(3)
+        sleep(2)
         pyautogui.click(508, 391) # CLICK MARKET
-        sleep(3)
+        sleep(2)
         pyautogui.click(743, 319) # CLICK SELL ALL CROPS
-        sleep(3)
+        sleep(2)
         pyautogui.click(960, 965)
-        sleep(3)
+        sleep(2)
         pyautogui.click(958, 607)
-        sleep(3)
+        sleep(2)
         pyautogui.click(116, 180)
-        sleep(3)
+        sleep(2)
         pyautogui.click(535, 430)
-        sleep(3)
+        sleep(2)
         pyautogui.click(508, 318)
-        sleep(3)
+        sleep(2)
         rebuy = 0
+        i = 32
         for harvests in harvest:
             rebuy = rebuy + 1
-        i = 24
         while i > rebuy:
-            pyautogui.click(340, 516) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
+            pyautogui.click(340, 413) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
             i = i - 1
             sleep(.35)
-        pyautogui.click(1478, 498) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
-        sleep(3)
+        pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+        sleep(2)
         pyautogui.click(960, 965) # CLICK OK
-        sleep(3)
+        sleep(2)
         pyautogui.click(966, 564) # CLICK GO TO FARM
         # longer sleep as 1 second would catch the screen half way swapped and mis-click then rebuy in error
-        sleep(3)
+        sleep(2)
 
         
     #Click to remove popup window that may appear
@@ -142,18 +142,18 @@ while(True):
     outOfSeeds = Vision('outOfSeeds.jpg')
     if(outOfSeeds.find(screenshot, 0.9, 'points').any()):
         pyautogui.click(116, 180) # CLICK HOME
-        sleep(3)
+        sleep(2)
         pyautogui.click(535, 430) # CLICK GO TO TOWN
-        sleep(3)
+        sleep(2)
         pyautogui.click(508, 318) # CLICK MARKET 
-        sleep(3)
-        pyautogui.click(1478, 498) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
-        sleep(3)
+        sleep(2)
+        pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+        sleep(2)
         pyautogui.click(960, 965) # CLICK OK
-        sleep(3)
+        sleep(2)
         pyautogui.click(966, 564) # CLICK GO TO FARM
         # longer sleep as 1 second would catch the screen half way swapped and mis-click then rebuy in error
-        sleep(3)
+        sleep(2)
 
     #refreshWindowTimer 
     if (time() - refreshWindowTimer > 240):
