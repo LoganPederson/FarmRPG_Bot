@@ -73,7 +73,7 @@ class PepperBot:
                 sleep(2)
                 pyautogui.click(535, 430) # CLICK GO TO TOWN
                 sleep(2)
-                pyautogui.click(508, 318) # 
+                pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
                 sleep(2)
                 rebuy = 0
                 i = 32

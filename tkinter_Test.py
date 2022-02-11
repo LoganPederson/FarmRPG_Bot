@@ -1,5 +1,6 @@
 from tkinter import *
 import mainV2
+import logCommands
 from fishingAuto import FishingBot
 from pepperBot import PepperBot
 from mainV2 import exitPlease
@@ -46,6 +47,8 @@ root = Tk()
 # create geometry
 root.title("FarmRPG_Bot")
 root.geometry("500x100+1400+900")
+# Make the window stay above all other windows
+root.attributes('-topmost',True)
 # Creating a Label Widget
 myLabel1 = Label(root, text="Run Main")
 myLabel2 = Button(root, command=runPepperBot_Background, text="Click Me!")
