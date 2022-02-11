@@ -11,6 +11,8 @@ from tkinter import *
 import sys
 import msvcrt
 
+
+
 class FishingBot:
     
     def __init__(self):
@@ -19,10 +21,11 @@ class FishingBot:
         # initialize the WindowCapture class
         self.wincap = WindowCapture()
         # initialize the Vision class
-        self.outOfSeeds = Vision('outOfSeeds.jpg')
+        self.fishShadow = Vision('fishShadow.jpg')
+        self.fishingClickTarget = Vision('fishingClickTarget.jpg')
         self.refreshWindowTimer = time()
         self.loop_time = time()
-
+        self.STATE = 'FISHING'
 
     def exitApp(self):
         # If button pressed, destroy the window
@@ -32,14 +35,32 @@ class FishingBot:
 
         while(self.exitPlease == False):
             # get an updated image of the game
-            self.screenshot = self.wincap.get_screenshot()
+            screenshot = self.wincap.get_screenshot()
+            if(self.STATE == 'FISHING'):
+                findFishingShadow = self.fishShadow.find(screenshot, 0.9, 'points')
+                if(findFishingShadow.any()):
+                    findShadowClickpoint = self.fishShadow.get_click_points(findFishingShadow)
+                    print(findShadowClickpoint)# Prints (x,y) of the found shadow
+                    sleep(.2)
+                    for clickpoint in findShadowClickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        self.STATE = 'FISHING_CLICK'
+                        
+            else:
+                screenshot = self.wincap.get_screenshot()
+                #scale screenshot down by 75%
+                findFishingClickTarget = self.fishingClickTarget.find(screenshot, 0.9, 'points')
+                if(findFishingClickTarget.any()):
+                    findClickpoint = self.fishingClickTarget.get_click_points(findFishingClickTarget)
+                    # print(findClickpoint) Prints (x,y) of the found fishing target
+                    tryingTimer = time()
+                    while(time() - tryingTimer < 5):
+                        for clickTarget in findClickpoint:
+                            pyautogui.click(clickTarget[0], (clickTarget[1]))
+                            self.STATE = 'FISHING'
+                        
 
 
-            # show screenshot
-            #cv.imshow('screenshot', screenshot)
-
-            # display the processed image
-        
 
             #refreshWindowTimer 
             if (time() - self.refreshWindowTimer > 240):
