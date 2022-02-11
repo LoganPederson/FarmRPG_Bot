@@ -203,7 +203,7 @@ def main():
         if cv.waitKey(1) == ord('q'):
             cv.destroyAllWindows()
             break
-        if exitPlease = True:
+        if exitPlease == True:
             cv.destroyAllWindows()
             break
 
