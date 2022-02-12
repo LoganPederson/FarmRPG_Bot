@@ -96,19 +96,19 @@ class FishingBot:
                 pyautogui.click(1010, 80)
                 print("Clicked at 1010, 80 on bookmark button")
                 sleep(3.5)
-                pyautogui.click(116, 185) # CLICK HOME
-                print("Clicked at 116, 185 on home button to refresh")
-                sleep(2)
-                pyautogui.click(400, 525) # CLICK GO TO TOWN [NORMAL 535, 430] [BANNER 400, 525]
-                sleep(2)
-                pyautogui.click(508, 391) # CLICK MARKET
-                sleep(2)
-                pyautogui.click(1051, 316) # CLICK SELL ALL FISH
-                sleep(2)
-                pyautogui.click(960, 965) # CLICK YES
-                sleep(2)
-                pyautogui.click(958, 607) # CLICK OK
-                sleep(2)
+                # pyautogui.click(116, 185) # CLICK HOME
+                # print("Clicked at 116, 185 on home button to refresh")
+                # sleep(2)
+                # pyautogui.click(400, 525) # CLICK GO TO TOWN [NORMAL 535, 430] [BANNER 400, 525]
+                # sleep(2)
+                # pyautogui.click(508, 391) # CLICK MARKET
+                # sleep(2)
+                # pyautogui.click(1051, 316) # CLICK SELL ALL FISH
+                # sleep(2)
+                # pyautogui.click(960, 965) # CLICK YES
+                # sleep(2)
+                # pyautogui.click(958, 607) # CLICK OK
+                # sleep(2)
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(2)
                 pyautogui.click(400, 525) # CLICK GO TO TOWN [NORMAL 535, 430] [BANNER 400, 525]

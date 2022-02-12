@@ -3,6 +3,7 @@ import mainV2
 import logCommands
 from fishingAuto import FishingBot
 from pepperBot import PepperBot
+from pettingBot import PettingBot
 from mainV2 import exitPlease
 import threading
 from time import *
@@ -11,7 +12,7 @@ import pyautogui
 # Create a window
 fishingBot = FishingBot()
 pepperBot = PepperBot()
-
+pettingBot = PettingBot()
 
 
 def runFishingBot():
@@ -55,6 +56,11 @@ def buildAppleTrees():
         i += 1
         print("done with apple tree %d" % i)
 
+def runPettingChickens():
+    pettingBot.petChicken()
+
+def buyingChickens(amount):
+    pettingBot.buyChickens(amount)
 
 root = Tk()
 # create geometry
@@ -62,6 +68,7 @@ root.title("FarmRPG_Bot")
 root.geometry("500x100+1400+900")
 # Make the window stay above all other windows
 root.attributes('-topmost',True)
+
 # Creating a Label Widget
 myLabel1 = Label(root, text="Farm Peppers")
 myLabel2 = Button(root, command=runPepperBot_Background, text="Click Me!")
@@ -71,6 +78,14 @@ myLabel5 = Button(root, command=runFishingBot_background, text="Click Me!")
 myLabel6 = Button(root, command=stopFishingBot, text="Exit!")
 myLabel7 = Label(root, text="Build Apple Trees")
 myLabel8 = Button(root, command=buildAppleTrees, text="Build!")
+myLabel9 = Label(root, text="Pet Chickens")
+myLabel10 = Button(root, command=runPettingChickens, text="Pet!")
+myLabel11 = Entry(root, text="Enter Amount of Chickens to Buy")
+amountOfChickens = myLabel11.get()
+intAmount = int(amountOfChickens)
+myLabel12 = Button(root, text="Buy Chickens!", command=buyingChickens(intAmount))
+
+
 # Grid Positions:
 myLabel1.grid(row=0, column=0)
 myLabel2.grid(row=0, column=1)
@@ -80,5 +95,9 @@ myLabel5.grid(row=1, column=1)
 myLabel6.grid(row=1, column=2)
 myLabel7.grid(row=2, column=0)
 myLabel8.grid(row=2, column=1)
+myLabel9.grid(row=3, column=0)
+myLabel10.grid(row=3, column=1)
+myLabel11.grid(row=3, column=2)
+myLabel12.grid(row=3, column=3)
 
 root.mainloop()
