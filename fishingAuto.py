@@ -76,13 +76,12 @@ class FishingBot:
                         
             else:
                 screenshot = self.wincap.get_screenshot()
-                #scale screenshot down by 75%
                 findFishingClickTarget = self.fishingClickTarget.find(screenshot, 0.9, 'points')
                 if(findFishingClickTarget.any()):
                     findClickpoint = self.fishingClickTarget.get_click_points(findFishingClickTarget)
                     # print(findClickpoint) Prints (x,y) of the found fishing target
                     tryingTimer = time()
-                    while(time() - tryingTimer < 5):
+                    while(time() - tryingTimer < 3):
                         for clickTarget in findClickpoint:
                             pyautogui.click(clickTarget[0], (clickTarget[1]))
                             self.STATE = 'FISHING'
@@ -91,7 +90,7 @@ class FishingBot:
 
 
             # refreshWindowTimer 
-            if (time() - self.refreshWindowTimer > 10): # EVERY 300 SECONDS REFRESH THE WINDOW, SELL ALL FISH, BUY BAIT
+            if (time() - self.refreshWindowTimer > 20): # EVERY 300 SECONDS REFRESH THE WINDOW, SELL ALL FISH, BUY BAIT
                 self.refreshWindowTimer = time()
                 sleep(3.5)
                 pyautogui.click(1010, 80)
@@ -100,7 +99,7 @@ class FishingBot:
                 pyautogui.click(116, 185) # CLICK HOME
                 print("Clicked at 116, 185 on home button to refresh")
                 sleep(2)
-                pyautogui.click(535, 430) # CLICK GO TO TOWN
+                pyautogui.click(400, 525) # CLICK GO TO TOWN [NORMAL 535, 430] [BANNER 400, 525]
                 sleep(2)
                 pyautogui.click(508, 391) # CLICK MARKET
                 sleep(2)
@@ -112,7 +111,7 @@ class FishingBot:
                 sleep(2)
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(2)
-                pyautogui.click(535, 430) # CLICK GO TO TOWN
+                pyautogui.click(400, 525) # CLICK GO TO TOWN [NORMAL 535, 430] [BANNER 400, 525]
                 sleep(2)
                 pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
                 sleep(2)
@@ -129,7 +128,10 @@ class FishingBot:
                 if(checkForPopup.any()):
                     print("No room for bait")
                     pyautogui.click(966, 622) # CLICK OK
+                    sleep(2)
                     pyautogui.click(116, 180) # CLICK HOME
+                    sleep(2)
+                    pyautogui.click(356, 592) # CLICK GO FISHING [NORMAL 502, 502] [BANNER 356, 592]
                     sleep(2)
                     pyautogui.click(573,533) # CLICK LAKE TEMPEST
                     print("Clicked at 502, 502 to go fishing at LAKE TEMPEST")
@@ -142,7 +144,7 @@ class FishingBot:
                     sleep(2)
                     pyautogui.click(116, 180) # CLICK HOME
                     sleep(2)
-                    pyautogui.click(502, 502) # CLICK GO FISHING
+                    pyautogui.click(356, 592) # CLICK GO FISHING [NORMAL 502, 502] [BANNER 356, 592]
                     sleep(2)
                     pyautogui.click(573,533) # CLICK LAKE TEMPEST
                     print("Clicked at 502, 502 to go fishing at LAKE TEMPEST")

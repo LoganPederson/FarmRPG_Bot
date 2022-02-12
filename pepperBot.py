@@ -71,7 +71,7 @@ class PepperBot:
                 print("Rebuying seeds...")
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(2)
-                pyautogui.click(535, 430) # CLICK GO TO TOWN
+                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
                 sleep(2)
                 pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
                 sleep(2)
@@ -108,7 +108,7 @@ class PepperBot:
                 #sell all the crops and rebuy more
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(2)
-                pyautogui.click(535, 430) # CLICK GO TO TOWN
+                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
                 sleep(2)
                 pyautogui.click(508, 391) # CLICK MARKET
                 sleep(2)
@@ -155,7 +155,7 @@ class PepperBot:
             if(self.outOfSeeds.find(screenshot, 0.9, 'points').any()):
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(2)
-                pyautogui.click(535, 430) # CLICK GO TO TOWN
+                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
                 sleep(2)
                 pyautogui.click(508, 318) # CLICK MARKET 
                 sleep(2)
@@ -174,10 +174,10 @@ class PepperBot:
                 print("Clicked at 1010, 80 on bookmark button")
                 sleep(3.5)
                 self.refreshWindowTimer = time()
-                pyautogui.click(116, 185)
+                pyautogui.click(116, 185) # CLICK HOME
                 print("Clicked at 116, 185 on home button to refresh")
                 sleep(3.5)
-                pyautogui.click(465, 253)
+                pyautogui.click(465, 330) # CLICK GO TO FARM [NORMAL 465,253] [BANNER 490,330]
                 print("Clicked at 465, 253 to return to farm")
                 sleep(3.5)
 
