@@ -1,3 +1,4 @@
+from cgitb import reset
 import cv2 as cv
 import numpy as np
 import os
@@ -59,6 +60,7 @@ class FishingBot:
         
     def main(self):  
 
+        resetTimer = time()
         while(self.exitPlease == False):
             # get an updated image of the game
             screenshot = self.wincap.get_screenshot()
@@ -85,12 +87,15 @@ class FishingBot:
                         for clickTarget in findClickpoint:
                             pyautogui.click(clickTarget[0], (clickTarget[1]))
                             self.STATE = 'FISHING'
+                if (time() - resetTimer > 15):
+                    self.STATE = 'FISHING'
+                    print("reset")
                         
 
 
 
             # refreshWindowTimer 
-            if (time() - self.refreshWindowTimer > 20): # EVERY 300 SECONDS REFRESH THE WINDOW, SELL ALL FISH, BUY BAIT
+            if (time() - self.refreshWindowTimer > 1200): # EVERY 300 SECONDS REFRESH THE WINDOW, SELL ALL FISH, BUY BAIT
                 self.refreshWindowTimer = time()
                 sleep(3.5)
                 pyautogui.click(1010, 80)

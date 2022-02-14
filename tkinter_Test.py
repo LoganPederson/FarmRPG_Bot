@@ -4,6 +4,7 @@ import logCommands
 from fishingAuto import FishingBot
 from pepperBot import PepperBot
 from pettingBot import PettingBot
+from peaBot import PeaBot
 from mainV2 import exitPlease
 import threading
 from time import *
@@ -13,7 +14,7 @@ import pyautogui
 fishingBot = FishingBot()
 pepperBot = PepperBot()
 pettingBot = PettingBot()
-
+peaBot = PeaBot()
 
 def runFishingBot():
     fishingBot.exitPlease = False
@@ -34,6 +35,15 @@ def runPepperBot_Background():
     p = threading.Thread(target=runPepperBot)
     p.start()
 
+def runPeaBot():
+    peaBot.exitPlease = False
+    peaBot.main()
+
+def runPeaBot_Background():
+    p = threading.Thread(target=runPeaBot)
+    p.start()
+
+
 def stopRunningPepperBot():
     pepperBot.exitApp()
     print('exiting pepper bot')
@@ -41,6 +51,10 @@ def stopRunningPepperBot():
 def stopFishingBot():
     fishingBot.exitApp()
     print('exiting fishing bot')
+
+def stopRunningPeaBot():
+    peaBot.exitApp()
+    print('exiting pea bot')
 
 def buildAppleTrees():
     print('building apple trees')
@@ -65,7 +79,7 @@ def buyingChickens(amount):
 root = Tk()
 # create geometry
 root.title("FarmRPG_Bot")
-root.geometry("500x100+1400+900")
+root.geometry("500x1500+1400+850")
 # Make the window stay above all other windows
 root.attributes('-topmost',True)
 
@@ -80,10 +94,13 @@ myLabel7 = Label(root, text="Build Apple Trees")
 myLabel8 = Button(root, command=buildAppleTrees, text="Build!")
 myLabel9 = Label(root, text="Pet Chickens")
 myLabel10 = Button(root, command=runPettingChickens, text="Pet!")
-myLabel11 = Entry(root, text="Enter Amount of Chickens to Buy")
-amountOfChickens = myLabel11.get()
-intAmount = int(amountOfChickens)
-myLabel12 = Button(root, text="Buy Chickens!", command=buyingChickens(intAmount))
+myLabel11 = Label(root, text="Farm Peas")
+myLabel12 = Button(root, command=runPeaBot_Background, text="Click Me!")
+myLabel13 = Button(root, command=stopRunningPeaBot, text="Exit")
+# myLabel11 = Entry(root, text="Enter Amount of Chickens to Buy")
+# amountOfChickens = myLabel11.get()
+# intAmount = int(amountOfChickens)
+# myLabel12 = Button(root, text="Buy Chickens!", command=buyingChickens(intAmount))
 
 
 # Grid Positions:
@@ -97,7 +114,10 @@ myLabel7.grid(row=2, column=0)
 myLabel8.grid(row=2, column=1)
 myLabel9.grid(row=3, column=0)
 myLabel10.grid(row=3, column=1)
-myLabel11.grid(row=3, column=2)
-myLabel12.grid(row=3, column=3)
+myLabel11.grid(row=4, column=0)
+myLabel12.grid(row=4, column=1)
+myLabel13.grid(row=4, column=2)
+# myLabel11.grid(row=3, column=2)
+# myLabel12.grid(row=3, column=3)
 
 root.mainloop()

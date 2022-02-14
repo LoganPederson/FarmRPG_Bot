@@ -27,7 +27,7 @@ import msvcrt
 # root.mainloop()
 
 
-class PepperBot:
+class PeaBot:
     def __init__(self):
         # initialize the WindowCapture class
         self.exitPlease = False
@@ -39,9 +39,7 @@ class PepperBot:
         self.harvestableOnion = Vision('harvestableOnion.jpg')
         self.harvestBarGreen = Vision('harvestBarGreen.jpg')
         self.tooSoon = Vision('tooSoon.jpg')
-        self.pepperReady = Vision('pepperReady.jpg')
-        self.radishReady = Vision('radishReady.jpg')
-        self.carrotReady = Vision('carrotReady.jpg')
+        self.peaReady = Vision('peaReady.jpg')
         self.cancelButton = Vision('cancelButton.jpg')
         self.outOfSeeds = Vision('outOfSeeds.jpg')
         self.refreshWindowTimer = time()
@@ -64,26 +62,26 @@ class PepperBot:
                 print(plantSeed)
                 print("Detected plant seed button")
                 pyautogui.click(1212, 211) # CLICK PLANT ALL
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(963, 963) # CLICK YES
-                sleep(1.3)
+                sleep(2.5)
                 print("Done planting 4x4")
                 print("Rebuying seeds...")
                 pyautogui.click(116, 180) # CLICK HOME
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
-                sleep(1.3)
+                sleep(2.5)
                 rebuy = 0
                 i = 32
                 for self.plantSeeds in plantSeed:
                     rebuy = rebuy + 1
                 while i > rebuy:
-                    pyautogui.click(340, 413) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
+                    pyautogui.click(340, 621) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516] [PEA: 340, 621]
                     i = i - 1
                     sleep(.35)
-                pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+                pyautogui.click(1478, 600) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498] [PEA: 1478, 600]
                 sleep(3)
                 pyautogui.click(960, 965) # CLICK OK
                 sleep(3)
@@ -93,7 +91,7 @@ class PepperBot:
 
             #Get updated screenshot as searching for plantSeed may have taken a bit of time
             screenshot = self.wincap.get_screenshot()
-            harvest = self.pepperReady.find(screenshot, 0.90, 'points') # [CARROT 0.90, RADISH x.xx]
+            harvest = self.peaReady.find(screenshot, 0.90, 'points') # [CARROT 0.90, RADISH x.xx, PEA 0.90]
             if (harvest.any()):
                 print("harvastable found, harvesting!")
                 print(harvest)
@@ -101,19 +99,19 @@ class PepperBot:
                 sleep(3.3)
                 print("Done harvesting 4x4, replanting...")
                 pyautogui.click(1216, 209)# CLICK PLANT ALL
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(963, 963) # CLICK YES
                 sleep(3.3)
                 print("Done replanting")
                 #sell all the crops and rebuy more
                 pyautogui.click(116, 180) # CLICK HOME
-                sleep(1.5)
+                sleep(2.5)
                 pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(508, 391) # CLICK MARKET
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(743, 319) # CLICK SELL ALL CROPS
-                sleep(1.3)
+                sleep(2.5)
                 pyautogui.click(960, 960) # CLICK YES
                 sleep(3.5)
                 pyautogui.click(958, 607) # CLICK OK
@@ -121,18 +119,18 @@ class PepperBot:
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(3)
                 pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
-                sleep(2)
+                sleep(2.5)
                 pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
-                sleep(1.3)
+                sleep(2.5)
                 rebuy = 0
                 i = 32
                 for self.harvests in harvest:
                     rebuy = rebuy + 1
                 while i > rebuy:
-                    pyautogui.click(340, 413) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
+                    pyautogui.click(340, 621) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516] [PEA: 340, 621]
                     i = i - 1
                     sleep(.35)
-                pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+                pyautogui.click(1478, 600) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498] [PEA: 1478, 600]
                 sleep(2.5)
                 pyautogui.click(960, 960) # CLICK YES
                 sleep(2.5)
@@ -153,12 +151,12 @@ class PepperBot:
             #check to see if out of seeds, rebuy if so
             if(self.outOfSeeds.find(screenshot, 0.9, 'points').any()):
                 pyautogui.click(116, 180) # CLICK HOME
-                sleep(2)
+                sleep(2.5)
                 pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
-                sleep(2)
+                sleep(2.5)
                 pyautogui.click(508, 318) # CLICK MARKET 
                 sleep(3)
-                pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+                pyautogui.click(1478, 600) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498] [PEA: 1478, 600]
                 sleep(3)
                 pyautogui.click(960, 965) # CLICK YES
                 sleep(3)
