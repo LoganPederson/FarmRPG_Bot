@@ -1,12 +1,9 @@
 from tkinter import *
-import mainV2
-import logCommands
 from fishingAuto import FishingBot
 from pepperBot import PepperBot
 from pettingBot import PettingBot
 from peaBot import PeaBot
 from exploringBot import ExploreBot
-from mainV2 import exitPlease
 import threading
 from time import *
 import cv2 as cv
