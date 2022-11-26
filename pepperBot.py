@@ -10,21 +10,6 @@ import pyautogui
 from tkinter import *
 import sys
 import msvcrt
-# Change the working directory to the folder this script is in.
-# Doing this because I'll be putting the files from each video in their own folder on GitHub
-
-# root = Tk()
-# # create a window
-# root.title("Garden Simulator")
-# root.geometry("500x500")
-
-# # create a label widget
-# myLabel1 = Label(root, text="Click to Exit")
-# myLabel2 = Button(root, text="!", command=exitApp)
-# # Grid Positions:
-# myLabel1.grid(row=0, column=0)
-# myLabel2.grid(row=0, column=1)
-# root.mainloop()
 
 
 class PepperBot:
@@ -33,17 +18,17 @@ class PepperBot:
         self.exitPlease = False
         self.wincap = WindowCapture()
         # initialize the Vision class
-        self.nextButton = Vision('next_button.jpg')
-        self.notYet = Vision('not_yet.jpg')
-        self.plantSeedButton = Vision('plantButton.jpg')
-        self.harvestableOnion = Vision('harvestableOnion.jpg')
-        self.harvestBarGreen = Vision('harvestBarGreen.jpg')
-        self.tooSoon = Vision('tooSoon.jpg')
-        self.pepperReady = Vision('pepperReady.jpg')
-        self.radishReady = Vision('radishReady.jpg')
-        self.carrotReady = Vision('carrotReady.jpg')
-        self.cancelButton = Vision('cancelButton.jpg')
-        self.outOfSeeds = Vision('outOfSeeds.jpg')
+        self.nextButton = Vision('img/next_button.jpg')
+        self.notYet = Vision('img/not_yet.jpg')
+        self.plantSeedButton = Vision('img/plantButton.jpg')
+        self.harvestableOnion = Vision('img/harvestableOnion.jpg')
+        self.harvestBarGreen = Vision('img/harvestBarGreen.jpg')
+        self.tooSoon = Vision('img/tooSoon.jpg')
+        self.pepperReady = Vision('img/pepperReady.jpg')
+        self.radishReady = Vision('img/radishReady.jpg')
+        self.carrotReady = Vision('img/carrotReady.jpg')
+        self.cancelButton = Vision('img/cancelButton.jpg')
+        self.outOfSeeds = Vision('img/outOfSeeds.jpg')
         self.refreshWindowTimer = time()
         self.loop_time = time()
     def exitApp(self):

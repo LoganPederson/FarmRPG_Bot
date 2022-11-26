@@ -20,7 +20,7 @@ class PettingBot:
     def __init__(self):
         self.exitPlease = False
         self.wincap = WindowCapture()
-        self.chicken = Vision('chicken.jpg')
+        self.chicken = Vision('img/chicken.jpg')
     def logClickOnChicken(self):
         f = open("log.txt", "a+")
         t=time()

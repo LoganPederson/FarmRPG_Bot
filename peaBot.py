@@ -33,15 +33,15 @@ class PeaBot:
         self.exitPlease = False
         self.wincap = WindowCapture()
         # initialize the Vision class
-        self.nextButton = Vision('next_button.jpg')
-        self.notYet = Vision('not_yet.jpg')
-        self.plantSeedButton = Vision('plantButton.jpg')
-        self.harvestableOnion = Vision('harvestableOnion.jpg')
-        self.harvestBarGreen = Vision('harvestBarGreen.jpg')
-        self.tooSoon = Vision('tooSoon.jpg')
-        self.peaReady = Vision('peaReady.jpg')
-        self.cancelButton = Vision('cancelButton.jpg')
-        self.outOfSeeds = Vision('outOfSeeds.jpg')
+        self.nextButton = Vision('img/next_button.jpg')
+        self.notYet = Vision('img/not_yet.jpg')
+        self.plantSeedButton = Vision('img/plantButton.jpg')
+        self.harvestableOnion = Vision('img/harvestableOnion.jpg')
+        self.harvestBarGreen = Vision('img/harvestBarGreen.jpg')
+        self.tooSoon = Vision('img/tooSoon.jpg')
+        self.peaReady = Vision('img/peaReady.jpg')
+        self.cancelButton = Vision('img/cancelButton.jpg')
+        self.outOfSeeds = Vision('img/outOfSeeds.jpg')
         self.refreshWindowTimer = time()
         self.loop_time = time()
     def exitApp(self):
@@ -57,7 +57,7 @@ class PeaBot:
 
             # display the processed image
             #points = nextButton.find(screenshot, 0.95, 'rectangles')
-            plantSeed = self.plantSeedButton.find(screenshot, 0.9, 'points')
+            plantSeed = self.plantSeedButton.find(screenshot, 0.91, 'points')
             if (plantSeed.any()):
                 print(plantSeed)
                 print("Detected plant seed button")
@@ -152,7 +152,7 @@ class PeaBot:
             if(self.outOfSeeds.find(screenshot, 0.9, 'points').any()):
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(2.5)
-                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
+                pyautogui.click(535, 430) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
                 sleep(2.5)
                 pyautogui.click(508, 318) # CLICK MARKET 
                 sleep(3)
@@ -175,7 +175,7 @@ class PeaBot:
                 pyautogui.click(116, 185) # CLICK HOME
                 print("Clicked at 116, 185 on home button to refresh")
                 sleep(3.5)
-                pyautogui.click(490, 330) # CLICK GO TO FARM [NORMAL 465,253] [BANNER 490,330]
+                pyautogui.click(465, 253) # CLICK GO TO FARM [NORMAL 465,253] [BANNER 490,330]
                 print("Clicked at 465, 253 to return to farm")
                 sleep(3.5)
 

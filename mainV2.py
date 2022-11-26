@@ -10,8 +10,6 @@ import pyautogui
 from tkinter import *
 import sys
 import msvcrt
-# Change the working directory to the folder this script is in.
-# Doing this because I'll be putting the files from each video in their own folder on GitHub
 
 # root = Tk()
 # # create a window
@@ -34,23 +32,20 @@ def exitApp():
     
 def main():
 
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
-
     # initialize the WindowCapture class
     wincap = WindowCapture()
     # initialize the Vision class
-    nextButton = Vision('next_button.jpg')
-    notYet = Vision('not_yet.jpg')
-    plantSeedButton = Vision('plantButton.jpg')
-    harvestableOnion = Vision('harvestableOnion.jpg')
-    harvestBarGreen = Vision('harvestBarGreen.jpg')
-    tooSoon = Vision('tooSoon.jpg')
-    pepperReady = Vision('pepperReady.jpg')
-    radishReady = Vision('radishReady.jpg')
-    carrotReady = Vision('carrotReady.jpg')
-    cancelButton = Vision('cancelButton.jpg')
-    outOfSeeds = Vision('outOfSeeds.jpg')
+    nextButton = Vision('img/next_button.jpg')
+    notYet = Vision('img/not_yet.jpg')
+    plantSeedButton = Vision('img/plantButton.jpg')
+    harvestableOnion = Vision('img/harvestableOnion.jpg')
+    harvestBarGreen = Vision('img/harvestBarGreen.jpg')
+    tooSoon = Vision('img/tooSoon.jpg')
+    pepperReady = Vision('img/pepperReady.jpg')
+    radishReady = Vision('img/radishReady.jpg')
+    carrotReady = Vision('img/carrotReady.jpg')
+    cancelButton = Vision('img/cancelButton.jpg')
+    outOfSeeds = Vision('img/outOfSeeds.jpg')
     refreshWindowTimer = time()
     '''
     # https://www.crazygames.com/game/guns-and-bottle

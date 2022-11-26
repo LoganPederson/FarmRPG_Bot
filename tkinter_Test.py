@@ -5,6 +5,7 @@ from fishingAuto import FishingBot
 from pepperBot import PepperBot
 from pettingBot import PettingBot
 from peaBot import PeaBot
+from exploringBot import ExploreBot
 from mainV2 import exitPlease
 import threading
 from time import *
@@ -15,6 +16,8 @@ fishingBot = FishingBot()
 pepperBot = PepperBot()
 pettingBot = PettingBot()
 peaBot = PeaBot()
+exploreBot = ExploreBot()
+
 
 def runFishingBot():
     fishingBot.exitPlease = False
@@ -43,6 +46,14 @@ def runPeaBot_Background():
     p = threading.Thread(target=runPeaBot)
     p.start()
 
+def runExploreBot():
+    exploreBot.exitPlease = False
+    exploreBot.main()
+
+def runExploreBot_Background():
+    p = threading.Thread(target=runExploreBot)
+    p.start()
+
 
 def stopRunningPepperBot():
     pepperBot.exitApp()
@@ -55,6 +66,10 @@ def stopFishingBot():
 def stopRunningPeaBot():
     peaBot.exitApp()
     print('exiting pea bot')
+
+def stopRunningExploreBot():
+    exploreBot.exitApp()
+    print('exiting explore bot')    
 
 def buildAppleTrees():
     print('building apple trees')
@@ -97,6 +112,9 @@ myLabel10 = Button(root, command=runPettingChickens, text="Pet!")
 myLabel11 = Label(root, text="Farm Peas")
 myLabel12 = Button(root, command=runPeaBot_Background, text="Click Me!")
 myLabel13 = Button(root, command=stopRunningPeaBot, text="Exit")
+myLabel14 = Label(root, text="Explore!")
+myLabel15 = Button(root, command=runExploreBot_Background, text="Click Me!")
+myLabel16 = Button(root, command=stopRunningExploreBot, text="Exit")
 # myLabel11 = Entry(root, text="Enter Amount of Chickens to Buy")
 # amountOfChickens = myLabel11.get()
 # intAmount = int(amountOfChickens)
@@ -117,6 +135,9 @@ myLabel10.grid(row=3, column=1)
 myLabel11.grid(row=4, column=0)
 myLabel12.grid(row=4, column=1)
 myLabel13.grid(row=4, column=2)
+myLabel14.grid(row=5, column=0)
+myLabel15.grid(row=5, column=1)
+myLabel16.grid(row=5, column=2)
 # myLabel11.grid(row=3, column=2)
 # myLabel12.grid(row=3, column=3)
 

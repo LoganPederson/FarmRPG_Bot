@@ -23,9 +23,9 @@ class FishingBot:
         # initialize the WindowCapture class
         self.wincap = WindowCapture()
         # initialize the Vision class
-        self.fishShadow = Vision('fishShadow.jpg')
-        self.fishingClickTarget = Vision('fishingClickTarget.jpg')
-        self.noRoomForBait = Vision('noRoomForBait.jpg')
+        self.fishShadow = Vision('img/fishShadow.jpg')
+        self.fishingClickTarget = Vision('img/fishingClickTarget.jpg')
+        self.noRoomForBait = Vision('img/noRoomForBait.jpg')
         self.refreshWindowTimer = time()
         self.loop_time = time()
         self.STATE = 'FISHING'
