@@ -29,6 +29,11 @@ class PepperBot:
         self.carrotReady = Vision('img/carrotReady.jpg')
         self.cancelButton = Vision('img/cancelButton.jpg')
         self.outOfSeeds = Vision('img/outOfSeeds.jpg')
+        self.town_text = Vision('img/town_img.jpg')
+        self.store_text = Vision('img/store_text.jpg')
+        self.pepper_buy = Vision('img/pepper_buy.jpg')
+        self.market_text = Vision('img/market_text.jpg')
+        self.sell_crops_text = Vision('img/sell_crops_text.jpg')
         self.refreshWindowTimer = time()
         self.loop_time = time()
     def exitApp(self):
@@ -56,19 +61,43 @@ class PepperBot:
                 print("Rebuying seeds...")
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(1.3)
-                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
+                screenshot = self.wincap.get_screenshot() # CLICK MARKET
+                click_town = self.town_text.find(screenshot, 0.7, 'points')
                 sleep(1.3)
-                pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
+                print('looking for town ')
+                if (click_town.any()):
+                    find_market_clickpoint = self.town_text.get_click_points(click_town)
+                    for clickpoint in find_market_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        print('found clickpoint of town_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no market found')
+                    break
                 sleep(1.3)
-                rebuy = 0
-                i = 32
-                for self.plantSeeds in plantSeed:
-                    rebuy = rebuy + 1
-                while i > rebuy:
-                    pyautogui.click(340, 413) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
-                    i = i - 1
-                    sleep(.35)
-                pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+                screenshot = self.wincap.get_screenshot() # GOTO STORE
+                click_store = self.store_text.find(screenshot, 0.7, 'points') 
+                if (click_store.any()):
+                    find_store_clickpoint = self.store_text.get_click_points(click_store)
+                    for clickpoint in find_store_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        print('found clickpoint of store_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no store found')
+                    break
+                sleep(1.3)
+                screenshot = self.wincap.get_screenshot() # CLICK BUY
+                buy_pepper = self.pepper_buy.find(screenshot, 0.9, 'points')
+                if (buy_pepper.any()):
+                    buy_pepper_clickpoints = self.pepper_buy.get_click_points(buy_pepper)
+                    for clickpoint in buy_pepper_clickpoints:
+                        pyautogui.click(clickpoint[0]+1100, clickpoint[1]+40)
+                        print('found clickpoint of buy_pepper of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no buy_pepper found')
+                    break
                 sleep(3)
                 pyautogui.click(960, 965) # CLICK OK
                 sleep(3)
@@ -93,11 +122,43 @@ class PepperBot:
                 #sell all the crops and rebuy more
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(1.5)
-                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
+                print('looking for town ')
+                screenshot = self.wincap.get_screenshot() # CLICK TOWN
+                click_town = self.town_text.find(screenshot, 0.8, 'points')
+                if (click_town.any()):
+                    find_town_clickpoint = self.town_text.get_click_points(click_town)
+                    for clickpoint in find_town_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        print('found clickpoint of town_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no town found')
+                    break
                 sleep(1.3)
-                pyautogui.click(508, 391) # CLICK MARKET
+                print('looking for market ')
+                screenshot = self.wincap.get_screenshot() # CLICK MARKET
+                click_market = self.market_text.find(screenshot, 0.8, 'points')
+                if (click_market.any()):
+                    find_market_clickpoint = self.market_text.get_click_points(click_market)
+                    for clickpoint in find_market_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        print('found clickpoint of market_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no market found')
+                    break
                 sleep(1.3)
-                pyautogui.click(743, 319) # CLICK SELL ALL CROPS
+                screenshot = self.wincap.get_screenshot() # CLICK SELL ALL CROPS
+                click_sell_all_crops = self.sell_crops_text.find(screenshot, 0.75, 'points')
+                if (click_sell_all_crops.any()):
+                    find_sell_clickpoint = self.sell_crops_text.get_click_points(click_sell_all_crops)
+                    for clickpoint in find_sell_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1]+20)
+                        print('found clickpoint of sell_crops_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no sell_crops_text found')
+                    break 
                 sleep(1.3)
                 pyautogui.click(960, 960) # CLICK YES
                 sleep(3.5)
@@ -105,19 +166,42 @@ class PepperBot:
                 sleep(3.5)
                 pyautogui.click(116, 180) # CLICK HOME
                 sleep(3)
-                pyautogui.click(289, 524) # CLICK GO TO TOWN [NORMAL 535,430] [BANNER 289, 524]
+                print('looking for town ') # CLICK TOWN
+                screenshot = self.wincap.get_screenshot()
+                click_town = self.town_text.find(screenshot, 0.8, 'points')
+                if (click_town.any()):
+                    find_town_clickpoint = self.town_text.get_click_points(click_town)
+                    for clickpoint in find_town_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        print('found clickpoint of town_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no town found')
+                    break
                 sleep(2)
-                pyautogui.click(508, 318) # CLICK GO TO COUNTRY STORE
+                screenshot = self.wincap.get_screenshot()
+                click_store = self.store_text.find(screenshot, 0.8, 'points') 
+                if (click_store.any()):
+                    find_store_clickpoint = self.store_text.get_click_points(click_store)
+                    for clickpoint in find_store_clickpoint:
+                        pyautogui.click(clickpoint[0], clickpoint[1])
+                        print('found clickpoint of store_text of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no store found')
+                    break
                 sleep(1.3)
-                rebuy = 0
-                i = 32
-                for self.harvests in harvest:
-                    rebuy = rebuy + 1
-                while i > rebuy:
-                    pyautogui.click(340, 413) # DOWN ARROW -> CARROT SET [PEPPER: 340, 413] [CARROT: 340, 516]
-                    i = i - 1
-                    sleep(.35)
-                pyautogui.click(1478, 382) # CLICK BUY -> CARROT SET [PEPPER: 1478, 382] [CARROT: 1478, 498]
+                screenshot = self.wincap.get_screenshot() # CLICK BUY
+                buy_pepper = self.pepper_buy.find(screenshot, 0.9, 'points')
+                if (buy_pepper.any()):
+                    buy_pepper_clickpoints = self.pepper_buy.get_click_points(buy_pepper)
+                    for clickpoint in buy_pepper_clickpoints:
+                        pyautogui.click(clickpoint[0]+1100, clickpoint[1]+40)
+                        print('found clickpoint of buy_pepper of: '+str(clickpoint[0])+ ' '+ str(clickpoint[1]))
+                        break
+                else:
+                    print('no buy_pepper found')
+                    break
                 sleep(2.5)
                 pyautogui.click(960, 960) # CLICK YES
                 sleep(2.5)
@@ -153,18 +237,18 @@ class PepperBot:
                 
 
             #refreshWindowTimer 
-            if (time() - self.refreshWindowTimer > 240):
-                sleep(3.5)
-                pyautogui.click(1010, 80)
-                print("Clicked at 1010, 80 on bookmark button")
-                sleep(3.5)
-                self.refreshWindowTimer = time()
-                pyautogui.click(116, 185) # CLICK HOME
-                print("Clicked at 116, 185 on home button to refresh")
-                sleep(3.5)
-                pyautogui.click(490, 330) # CLICK GO TO FARM [NORMAL 465,253] [BANNER 490,330]
-                print("Clicked at 465, 253 to return to farm")
-                sleep(3.5)
+            # if (time() - self.refreshWindowTimer > 240):
+            #     sleep(3.5)
+            #     pyautogui.click(1010, 80)
+            #     print("Clicked at 1010, 80 on bookmark button")
+            #     sleep(3.5)
+            #     self.refreshWindowTimer = time()
+            #     pyautogui.click(116, 185) # CLICK HOME
+            #     print("Clicked at 116, 185 on home button to refresh")
+            #     sleep(3.5)
+            #     pyautogui.click(490, 330) # CLICK GO TO FARM [NORMAL 465,253] [BANNER 490,330]
+            #     print("Clicked at 465, 253 to return to farm")
+            #     sleep(3.5)
 
 
             # debug the loop rate
